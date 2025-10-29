@@ -14,11 +14,16 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
         messageElement.textContent = '¡Inicio de sesión exitoso! Bienvenido/a a Genesis\'s Shop.';
         messageElement.style.color = '#38b000';
+        
+        // Redirect to store page after a short delay
+        setTimeout(function() {
+            window.location.href = 'pages/store.html';
+        }, 100);
     } else {
 
-messageElement.textContent = '';
-messageElement.style.color = '#ff4d4d'; 
-}
+        messageElement.textContent = 'Usuario o contraseña incorrectos.';
+        messageElement.style.color = '#ff4d4d'; 
+    }
 
     usernameInput.value = '';
     passwordInput.value = '';

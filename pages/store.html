@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis's Shop - Minecraft Items</title>
+    <link rel="icon" type="image/x-icon" href="../assets/face.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/store.css">
+</head>
+<body>
+    <div id="particles-js"></div> 
+    
+    <div class="store-container">
+        <div class="header">
+            <h1>FideTienda</h1>
+            <div class="cart-icon" id="cartIcon">
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+        <div class="store-grid">
+            <!-- Diamond Helmet -->
+            <div class="item-card" data-item="diamond_helmet">
+                <div class="item-icon">
+                    <div class="minecraft-item diamond-helmet"></div>
+                </div>
+                <div class="item-details">
+                    <h3>Casco de Diamante</h3>
+                    <p class="item-description">Provides protection for your head</p>
+                    <div class="item-tooltip">
+                        <h4>Casco de Diamante</h4>
+                        <p class="enchantment">Protección IV</p>
+                        <p class="enchantment">Irrompibilidad III</p>
+                        <p class="enchantment">Respiración III</p>
+                        <p class="durability">Durability: 285/363</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" data-item="diamond_helmet">-</button>
+                        <input type="number" class="quantity-input" id="qty-diamond_helmet" value="1" min="1" max="64">
+                        <button class="qty-btn plus" data-item="diamond_helmet">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="diamond_helmet">Añadir al Carro</button>
+                </div>
+            </div>
+
+            <!-- Diamond Chestplate -->
+            <div class="item-card" data-item="diamond_chestplate">
+                <div class="item-icon">
+                    <div class="minecraft-item diamond-chestplate"></div>
+                </div>
+                <div class="item-details">
+                    <h3>Diamond Chestplate</h3>
+                    <p class="item-description">Strong protection for your torso</p>
+                    <div class="item-tooltip">
+                        <h4>Diamond Chestplate</h4>
+                        <p class="enchantment">Protection IV</p>
+                        <p class="enchantment">Unbreaking III</p>
+                        <p class="enchantment">Thorns III</p>
+                        <p class="durability">Durability: 438/528</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" data-item="diamond_chestplate">-</button>
+                        <input type="number" class="quantity-input" id="qty-diamond_chestplate" value="1" min="1" max="64">
+                        <button class="qty-btn plus" data-item="diamond_chestplate">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="diamond_chestplate">Añadir al Carro</button>
+                </div>
+            </div>
+
+            <!-- Diamond Leggings -->
+            <div class="item-card" data-item="diamond_leggings">
+                <div class="item-icon">
+                    <div class="minecraft-item diamond-leggings"></div>
+                </div>
+                <div class="item-details">
+                    <h3>Diamond Leggings</h3>
+                    <p class="item-description">Protect your legs from damage</p>
+                    <div class="item-tooltip">
+                        <h4>Diamond Leggings</h4>
+                        <p class="enchantment">Protection IV</p>
+                        <p class="enchantment">Unbreaking III</p>
+                        <p class="enchantment">Swift Sneak III</p>
+                        <p class="durability">Durability: 405/495</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" data-item="diamond_leggings">-</button>
+                        <input type="number" class="quantity-input" id="qty-diamond_leggings" value="1" min="1" max="64">
+                        <button class="qty-btn plus" data-item="diamond_leggings">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="diamond_leggings">Añadir al Carro</button>
+                </div>
+            </div>
+
+            <!-- Diamond Boots -->
+            <div class="item-card" data-item="diamond_boots">
+                <div class="item-icon">
+                    <div class="minecraft-item diamond-boots"></div>
+                </div>
+                <div class="item-details">
+                    <h3>Diamond Boots</h3>
+                    <p class="item-description">Protect your feet and increase mobility</p>
+                    <div class="item-tooltip">
+                        <h4>Diamond Boots</h4>
+                        <p class="enchantment">Protection IV</p>
+                        <p class="enchantment">Unbreaking III</p>
+                        <p class="enchantment">Feather Falling IV</p>
+                        <p class="enchantment">Depth Strider III</p>
+                        <p class="durability">Durability: 355/429</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" data-item="diamond_boots">-</button>
+                        <input type="number" class="quantity-input" id="qty-diamond_boots" value="1" min="1" max="64">
+                        <button class="qty-btn plus" data-item="diamond_boots">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="diamond_boots">Añadir al Carro</button>
+                </div>
+            </div>
+
+            <!-- Diamond Sword -->
+            <div class="item-card" data-item="diamond_sword">
+                <div class="item-icon">
+                    <div class="minecraft-item diamond-sword"></div>
+                </div>
+                <div class="item-details">
+                    <h3>Diamond Sword</h3>
+                    <p class="item-description">A powerful weapon for combat</p>
+                    <div class="item-tooltip">
+                        <h4>Diamond Sword</h4>
+                        <p class="enchantment">Sharpness V</p>
+                        <p class="enchantment">Unbreaking III</p>
+                        <p class="enchantment">Looting III</p>
+                        <p class="enchantment">Fire Aspect II</p>
+                        <p class="enchantment">Knockback II</p>
+                        <p class="durability">Durability: 1502/1561</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" data-item="diamond_sword">-</button>
+                        <input type="number" class="quantity-input" id="qty-diamond_sword" value="1" min="1" max="64">
+                        <button class="qty-btn plus" data-item="diamond_sword">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="diamond_sword">Añadir al Carro</button>
+                </div>
+            </div>
+
+            <!-- Shulker Box -->
+            <div class="item-card" data-item="shulker_box">
+                <div class="item-icon">
+                    <div class="minecraft-item shulker-box"></div>
+                </div>
+                <div class="item-details">
+                    <h3>Shulker Box</h3>
+                    <p class="item-description">Portable storage with keeping capability</p>
+                    <div class="item-tooltip">
+                        <h4>Shulker Box</h4>
+                        <p class="enchantment">Keeps inventory on death</p>
+                        <p>27 slots of storage</p>
+                        <p class="durability">Durability: 100%</p>
+                    </div>
+                </div>
+                <div class="item-actions">
+                    <div class="quantity-selector">
+                        <button class="qty-btn minus" data-item="shulker_box">-</button>
+                        <input type="number" class="quantity-input" id="qty-shulker_box" value="1" min="1" max="64">
+                        <button class="qty-btn plus" data-item="shulker_box">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-item="shulker_box">Añadir al Carro</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cart Modal -->
+        <div class="cart-modal" id="cartModal">
+            <div class="cart-content">
+                <span class="close-cart" id="closeCart">×</span>
+                <h2>Carrito de Compras</h2>
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be added here dynamically -->
+                </div>
+                <div class="cart-total">
+                    <p>Total: <span id="cartTotal">$0</span></p>
+                    <button class="checkout-btn">Proceder al Pago</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../js/particles-config.js"></script> 
+    <script src="../js/store.js"></script>
+</body>
+</html>
