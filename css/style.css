@@ -3,7 +3,7 @@ body {
     padding: 0;
     background: transparent;
     color: white;
-    font-family: sans-serif;
+    font-family: Minecraftia;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,22 +82,32 @@ body {
     box-sizing: border-box;
 }
 
-#loginButton {
+#loginButton, #guestButton {
     width: 100%;
     padding: 12px;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 5px;
-    background: linear-gradient(90deg, #FFA500, #FFD700);
+    background: rgba(255, 255, 255, 0.1);
     color: white;
     font-size: 1.1em;
     font-weight: bold;
+    font-family: Minecraftia;
     cursor: pointer;
-    margin-top: 10px;
     transition: background 0.3s ease;
+}
+
+#loginButton {
+    background: linear-gradient(90deg, #FFA500, #FFD700);
+    border: none;
+    margin-top: 10px;
 }
 
 #loginButton:hover {
     background: linear-gradient(90deg, #FF8C00, #FFA500);
+}
+
+#guestButton:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 #message {
