@@ -1,0 +1,347 @@
+/* === Character Stats Page Styles === */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Fondo dinámico */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    z-index: 0;
+}
+
+/* Contenedor general */
+.stats-container {
+    position: relative;
+    z-index: 2;
+    max-width: 950px; /* más compacto */
+    margin: 20px auto;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Cabecera --- */
+.character-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.character-header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* --- Layout general --- */
+.stats-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* Sección de estadísticas (barras) */
+.stats-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+/* --- Barras individuales --- */
+.stat-bar {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease;
+}
+
+.stat-bar:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+.stat-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+}
+
+.stat-bar-container {
+    height: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.stat-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    width: 0%;
+    position: relative;
+    box-shadow: inset 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.stat-bar-fill.animate {
+    width: var(--fill-width, 0%);
+}
+
+.stat-bar-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shine 2s infinite;
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Ocultar números pequeños de las barras */
+.stat-value {
+    display: none !important;
+}
+
+/* --- Sección Foto y Edad/Tipo --- */
+.character-photo-section {
+    flex: 0 0 220px; /* ancho fijo menor */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.character-photo-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Marco de la imagen */
+.character-photo-placeholder {
+    width: 100%;
+    max-width: 250px; /* reduce visualmente */
+    aspect-ratio: 6/10.34; /* más compacto que 9:16 */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-content {
+    text-align: center;
+}
+
+.photo-placeholder-text {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* === BLOQUE EDAD / TIPO DEBAJO DE LA IMAGEN === */
+.character-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    animation: glowPulse 4s ease-in-out infinite;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 230px; /* hace que quede alineado con la foto */
+}
+
+/* 🔆 Resplandor dorado continuo */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+        border-color: rgba(255, 215, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(255, 215, 0, 0.5);
+        border-color: rgba(255, 215, 0, 0.6);
+    }
+}
+
+/* Hover brillante */
+.character-info:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+    border-color: rgba(255, 215, 0, 0.9);
+}
+
+/* Tarjetas individuales */
+.character-info .info-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+/* Efecto sutil al pasar el ratón */
+.character-info .info-row:hover {
+    background: rgba(255, 215, 0, 0.1);
+}
+
+/* Etiquetas y valores */
+.character-info .info-label {
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 0.85em;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#character-age,
+#character-type {
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 1em;
+}
+
+/* --- Descripción del personaje --- */
+.character-description {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.character-description p {
+    margin: 0;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 968px) {
+    .stats-container {
+        padding: 15px;
+        margin: 10px;
+    }
+
+    .stats-layout {
+        gap: 20px;
+    }
+
+    .stats-section {
+        min-width: 250px;
+    }
+
+    .character-header h1 {
+        font-size: 2em;
+    }
+
+    .character-info {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+}
+
+/* Tema morado (Darmoo) */
+body.theme-darmoo {
+  --primary-color: #9b5de5;
+  --secondary-color: #c77dff;
+  --accent-color: #d400ff;
+  --bg-gradient-start: #000000;
+  --bg-gradient-end: #4f1b8e;
+}
+
+/* Tema amarillo (Fideo) */
+body.theme-fideo {
+  --primary-color: #FFCC00;
+  --secondary-color: #FFF176;
+  --accent-color: #ffd700;
+  --bg-gradient-start: #000000;
+  --bg-gradient-end: #B8860B;
+}
+
+/* Tema celeste (Noap) */
+body.theme-noap {
+  --primary-color: #00BFFF;
+  --secondary-color: #87CEFA;
+  --accent-color: #0077ff;
+  --bg-gradient-start: #000000;
+  --bg-gradient-end: #0077B6;
+}
+
+/* Aplicar colores del tema */
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+}
+
+.character-header h1 {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(var(--accent-rgb, 255, 215, 0), 0.5);
+}
+
+.stat-label {
+    color: var(--primary-color);
+}
+
+.stat-bar-fill {
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    box-shadow: inset 0 0 10px rgba(var(--primary-rgb, 255, 215, 0), 0.3);
+}
+
+.character-info .info-label {
+    color: var(--primary-color);
+}
+
+#character-age,
+#character-type {
+    color: var(--accent-color);
+}

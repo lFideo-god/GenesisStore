@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas del Personaje - Genesis's Shop</title>
+    <link rel="icon" type="image/x-icon" href="../assets/face.ico">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/char-stats.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="stats-container">
+        <div class="character-header">
+            <h1 id="character-name">Nombre del Personaje</h1>
+        </div>
+
+        <div class="stats-layout">
+            <div class="stats-section">
+                <div class="stat-bar">
+                    <div class="stat-label">Fuerza</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="strength-bar" data-value="75"></div>
+                    </div>
+                    <div class="stat-value" id="strength-value">75</div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Habilidad</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="skill-bar" data-value="60"></div>
+                    </div>
+                    <div class="stat-value" id="skill-value">60</div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Destreza</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="dexterity-bar" data-value="85"></div>
+                    </div>
+                    <div class="stat-value" id="dexterity-value">85</div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Creatividad</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="creativity-bar" data-value="90"></div>
+                    </div>
+                    <div class="stat-value" id="creativity-value">90</div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Agilidad</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="agility-bar" data-value="70"></div>
+                    </div>
+                    <div class="stat-value" id="agility-value">70</div>
+                </div>
+            </div>
+
+            <div class="character-photo-section">
+                <div class="character-photo-placeholder">
+                    <!-- Placeholder for character photo (9:16 aspect ratio) -->
+                    <div class="photo-content">
+                        <div class="photo-placeholder-text">Foto del Personaje</div>
+                        <div class="aspect-ratio-indicator">9:16</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="character-info">
+            <div class="info-row">
+                <span class="info-label">Edad:</span>
+                <span id="character-age">25 años</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Tipo:</span>
+                <span id="character-type">Guerrero</span>
+            </div>
+        </div>
+
+        <div class="character-description">
+            <p id="character-desc">Aquí va la descripción completa del personaje. Puede incluir su historia, personalidad, habilidades especiales y otros detalles relevantes.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../js/particles-config.js"></script>
+    <script src="../js/char-stats.js"></script>
+</body>
+</html>
