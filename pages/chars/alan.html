@@ -44,14 +44,14 @@
                 </div>
 
                 <div class="stat-bar">
-                    <div class="stat-label">Creatividad</div>
+                    <div class="stat-label" id="agility-label">Creatividad</div>
                     <div class="stat-bar-container">
                         <div class="stat-bar-fill" id="creativity-bar" data-value="100"></div>
                     </div>
                 </div>
 
                 <div class="stat-bar">
-                    <div class="stat-label">Agilidad</div>
+                    <div class="stat-label" id="agility-label">Agilidad</div>
                     <div class="stat-bar-container">
                         <div class="stat-bar-fill" id="agility-bar" data-value="100"></div>
                     </div>
@@ -68,11 +68,11 @@
 
                 <div class="character-info">
                     <div class="info-row">
-                        <span class="info-label">Estado:</span>
+                        <span class="info-labl">Estado:</span>
                         <span id="character-age">Revivido</span>
                     </div>
                     <div class="info-row">
-                        <span class="info-label">Tipo:</span>
+                        <span class="info-labl">Tipo:</span>
                         <span id="character-type">?</span>
                     </div>
                 </div>
@@ -93,6 +93,33 @@
     <script src="../js/particles-config.js"></script>
     <script src="../../js/char-stats.js"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const possibleChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()[]{}|;:,.<>?";
+    
+    // Selecciona sólo los elementos con clase que termina en "-label"
+    const labelElements = Array.from(document.querySelectorAll('[class$="-label"]'));
+    
+    // Guarda el texto original de cada etiqueta
+    const originals = labelElements.map(el => el.textContent);
+
+    function obfuscateLabels() {
+        labelElements.forEach((el, i) => {
+            const original = originals[i];
+            let randomText = "";
+            for (let j = 0; j < original.length; j++) {
+                const randomChar = possibleChars.charAt(Math.floor(Math.random() * possibleChars.length));
+                randomText += randomChar;
+            }
+            el.textContent = randomText;
+        });
+    }
+
+    // Ejecutar cada 80 ms para un efecto fluido y sin sobrecarga
+    setInterval(obfuscateLabels, 40);
+});
+</script>
+
     <script>
         let clickCount = 0;
         function handleImageClick() {
@@ -103,5 +130,36 @@
             }
         }
     </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const konamiCode = [
+        "ArrowUp", "ArrowUp",
+        "ArrowDown", "ArrowDown",
+        "ArrowLeft", "ArrowRight",
+        "ArrowLeft", "ArrowRight",
+        "b", "a"
+    ];
+    let currentPosition = 0;
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === konamiCode[currentPosition]) {
+            currentPosition++;
+            if (currentPosition === konamiCode.length) {
+                // Código Konami completado
+                const img = document.querySelector(".character-photo-image");
+                if (img) {
+                    img.src = "../../assets/chars/alan2k2maid.png";
+                }
+                currentPosition = 0; // Reinicia la secuencia
+            }
+        } else {
+            // Si se presiona otra tecla, reiniciar
+            currentPosition = 0;
+        }
+    });
+});
+</script>
+
 </body>
 </html>
