@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soru</title>
+    <link rel="icon" type="image/x-icon" href="../../assets/face.ico">
+
+    <!-- Fuente estilo Minecraft (Press Start 2P o Minecraftia si la tienes local) -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <!-- Hojas de estilo -->
+
+    <link rel="stylesheet" href="../../css/char-stats.css">
+</head>
+
+<!-- 👇 Tema específico del personaje -->
+<body class="theme-soru">
+
+    <div id="particles-js"></div>
+
+    <div class="stats-container">
+        <div class="character-header">
+            <h1 id="character-name">Soru</h1>
+        </div>
+
+        <div class="stats-layout">
+            <!-- Sección de estadísticas -->
+            <div class="stats-section">
+                <div class="stat-bar">
+                    <div class="stat-label">Fuerza</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="strength-bar" data-value="86"></div>
+                    </div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Habilidad</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="skill-bar" data-value="48"></div>
+                    </div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Cine</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="dexterity-bar" data-value="100"></div>
+                    </div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Creatividad</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="creativity-bar" data-value="86"></div>
+                    </div>
+                </div>
+
+                <div class="stat-bar">
+                    <div class="stat-label">Agilidad</div>
+                    <div class="stat-bar-container">
+                        <div class="stat-bar-fill" id="agility-bar" data-value="34"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de foto + info -->
+            <div class="character-photo-section">
+                <div class="character-photo-placeholder">
+                    <div class="photo-content">
+                        <img src="../../assets/chars/soru.png" alt="Foto de Soru" class="character-photo-image">
+                    </div>
+                </div>
+
+                <div class="character-info">
+                    <div class="info-row">
+                        <span class="info-label">Jugador:</span>
+                        <span id="character-age">Técnico</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Tipo:</span>
+                        <span id="character-type">Enderman</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="character-description">
+            <p id="character-desc">
+                Aquí va la descripción completa del personaje. Puede incluir su historia, personalidad, habilidades especiales
+                y otros detalles relevantes.
+            </p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="../js/particles-config.js"></script>
+    <script src="../../js/char-stats.js"></script>
+</body>
+</html>

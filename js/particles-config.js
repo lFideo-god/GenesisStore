@@ -9,13 +9,13 @@ particlesJS('particles-js',
                 }
             },
             "color": {
-                "value": "#9932cc" // Color morado intenso
+                "value": "#df912bff" // Color morado intenso
             },
             "shape": {
                 "type": "circle",
                 "stroke": {
                     "width": 1,
-                    "color": "#4b0082" // Borde morado oscuro
+                    "color": "#f09319ff" // Borde morado oscuro
                 },
             },
             "opacity": {
@@ -41,7 +41,7 @@ particlesJS('particles-js',
             "line_linked": {
                 "enable": true,
                 "distance": 150, // ⬆️ Aumentado para una red de conexión más amplia
-                "color": "#8a2be2", // Color de líneas vibrante
+                "color": "#e26e2bff", // Color de líneas vibrante
                 "opacity": 0.7,
                 "width": 1
             },

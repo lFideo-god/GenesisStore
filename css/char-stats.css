@@ -318,6 +318,32 @@ body.theme-noap {
   --bg-gradient-end: #0077B6;
 }
 
+/* Tema Negro (Alan) */
+body.theme-alan2k2 {
+  --primary-color: #272727;
+  --secondary-color: #2b2b2b;
+  --accent-color: #313131;
+  --bg-gradient-start: #000000;
+  --bg-gradient-end: #222222;
+}
+
+/* Tema bluesitoh (BlueSitoh) */
+body.theme-bluesitoh {
+  --primary-color: #e8639e;
+  --secondary-color: #e984b1;
+  --accent-color: #e486b0;
+  --bg-gradient-start: #9b5072;
+  --bg-gradient-end: #f070a9;
+}
+
+body.theme-soru {
+  --primary-color: #df2727;
+  --secondary-color: #a33a3a;
+  --accent-color: #53100f;
+  --bg-gradient-start: #692a2a;
+  --bg-gradient-end: #8c1817;
+}
+
 /* Aplicar colores del tema */
 body {
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);

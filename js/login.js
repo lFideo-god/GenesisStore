@@ -1,3 +1,5 @@
+console.log('Login script loaded');
+
 document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -8,15 +10,8 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
     // Pasar el usuario a minúsculas y eliminar espacios extra
     const username = usernameInput.value.trim().toLowerCase();
 
-    // --- Lógica de acceso ---
-    if (username === 'admin') {
-        messageElement.textContent = '¡Inicio de sesión exitoso! Bienvenido/a a Genesis\'s Shop.';
-        messageElement.style.color = '#38b000';
-        setTimeout(() => {
-            window.location.href = 'pages/store.html';
-        }, 500);
 
-    } else if (username === 'fideo' || username === 'lfideo') {
+    if (username === 'fideo' || username === 'lfideo') {
         window.location.href = 'pages/chars/fideo.html'; 
     }
 
@@ -24,22 +19,59 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         window.location.href = 'pages/chars/darmoo.html';
     }
 
+    else if (username === 'noap') {
+        window.location.href = 'pages/chars/noap.html';
+    } 
+
+    else if (username === 'alan' || username === 'alan2k2' || username === 'alan2k2mc' ) {
+        window.location.href = 'pages/chars/alan.html';
+    } 
+
+    else if (username === 'bluesito' || username === 'bluesitoh' || username === 'blue') {
+        window.location.href = 'pages/chars/bluesitoh.html';
+    }
+
+    else if (username === 'soru' || username === 'sorusan' || username === 'soru_san') {
+        window.location.href = 'pages/chars/soru.html';
+    }
+
+    // ================ EASTER EGGS ======================
+
+
     else if (username === 'dirmoo') {
         messageElement.textContent = 'Jaja, dirmoo';
     }
 
-    else if (username === 'noap') {
-        window.location.href = 'pages/chars/noap.html';
-    } 
+    else if (username === 'endertuki') {
+        
+        //show etuki.gif gif for 500 ms
+        const etukiImg = document.createElement('img');
+        etukiImg.src = 'assets/easters/etuki.gif';
+        etukiImg.style.position = 'fixed';
+        etukiImg.style.top = '50%';
+        etukiImg.style.left = '50%';
+        etukiImg.style.transform = 'translate(-50%, -50%)';
+        etukiImg.style.zIndex = '1000';
+        etukiImg.style.width = '100%';
+        etukiImg.style.height = '100%';
+        etukiImg.style.mixBlendMode = 'lighten';
     
-    else {
-        // --- Usuario no reconocido ---
-        //messageElement.textContent = 'Usuario no reconocido.';
-        //essageElement.style.color = '#ff4d4d';
-        // Redirect a store como invitado
-        window.location.href = 'pages/store.html';
-        usernameInput.focus();
+        document.body.appendChild(etukiImg);
+
+        setTimeout(() => {
+            document.body.removeChild(etukiImg);
+        }, 300);
+        //small delay for the gif to be seen then show alert
+        setTimeout(() => {
+            alert('👁 👁');
+        }, 350);
+        
+        //alert('👁 👁');
     }
+
+    //else if (username === 'alan2k3' && passwordInput.value === 'FIDEO') {
+    //    window.location.href = 'pages/chars/fideo.html';
+    //}
 
     // --- Limpieza de campos ---
     usernameInput.value = '';
