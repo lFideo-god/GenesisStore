@@ -320,8 +320,8 @@ body.theme-noap {
 
 /* Tema Negro (Alan) */
 body.theme-alan2k2 {
-  --primary-color: #272727;
-  --secondary-color: #aaaaaa;
+  --primary-color: #3b3b3b;
+  --secondary-color: #313131;
   --accent-color: #f3f3f3;
   --bg-gradient-start: #000000;
   --bg-gradient-end: #222222;
