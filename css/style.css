@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
     position: relative;
     z-index: 1;
+    background: linear-gradient(135deg, #000000 0%, #FFA500 100%);
 }
 
 #particles-js {
@@ -18,7 +19,6 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: linear-gradient(135deg, #000000 0%, #FFA500 100%);
     z-index: 0;
 }
 
