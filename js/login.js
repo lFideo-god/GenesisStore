@@ -35,6 +35,10 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         window.location.href = 'pages/chars/soru.html';
     }
 
+    else if (username === 'Snoker' || username === 'Xocke' || username === 'snoker' || username === 'xocke') {
+        window.location.href = 'pages/chars/snoker.html';
+    }
+
     // ================ EASTER EGGS ======================
 
 
