@@ -4,13 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Snoker — Génesis (Black)</title>
+    <title>Snoker — Terminal Negra</title>
     <style>
         :root {
             --bg: #000;
-            --glass: rgba(255, 255, 255, 0.03);
-            --text: #9ff3d1;
-            --muted: #4b6b64
+            --text: #ff9a28;
+            --muted: #2b6b5d
         }
 
         * {
@@ -26,141 +25,58 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
         }
 
-        /* Contenedor central (para contenido futuro) */
-        .shell {
-            width: 100%;
-            max-width: 1200px;
-            padding: 36px;
-            margin: 0 auto
-        }
-
-        .center {
+        .terminal {
+            position: fixed;
+            inset: 0;
+            padding: 22px 18px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            align-items: center
+            gap: 6px;
+            line-height: 1.4;
+            overflow: auto
         }
 
-        /* Panel oscuro centrado como referencia (se queda muy tenue) */
-        .panel {
-            width: 640px;
-            max-width: 92%;
-            padding: 22px;
-            border-radius: 8px;
-            background: var(--glass);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-            text-align: center
-        }
-
-        /* Estética de "ordenador antiguo" en esquina */
-        .retro-terminal-wrap {
-            position: fixed;
-            left: 18px;
-            top: 18px;
-            z-index: 2000;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            pointer-events: auto
-        }
-
-        .monitor {
-            width: 420px;
-            max-width: 80vw;
-            border-radius: 6px;
-            padding: 10px;
-            background: linear-gradient(180deg, #001213, #041518);
-            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            transform-origin: left top;
-            opacity: 0;
-            transform: translateY(-8px) scale(.98);
-            backdrop-filter: blur(2px)
-        }
-
-        .monitor.visible {
-            animation: monitorIn .45s cubic-bezier(.2, .9, .26, 1) forwards
-        }
-
-        @keyframes monitorIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .monitor .titlebar {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            margin-bottom: 8px
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%
-        }
-
-        .dot.red {
-            background: #ff5f56
-        }
-
-        .dot.yellow {
-            background: #ffbd2e
-        }
-
-        .dot.green {
-            background: #27c93f
-        }
-
-        .monitor .screen {
-            background: #031211;
-            border-radius: 4px;
-            padding: 12px;
-            height: 120px;
-            overflow: hidden;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-            color: var(--text);
-            font-size: 13px;
-            line-height: 1.35;
-            border: 1px solid rgba(255, 255, 255, 0.02)
-        }
-
-        /* Efecto de entrada para el texto 'Iniciando protocolo Valkyria...' */
         .bootline {
             font-weight: 700;
-            color: #bff9d8;
-            display: inline-block;
-            transform-origin: left center;
+            color: var(--text);
             opacity: 0;
-            transform: translateX(-6px);
+            transform: translateY(-6px);
         }
 
-        .bootline.move {
-            animation: bootMove 650ms ease forwards
+        .bootline.visible {
+            animation: bootIn .45s cubic-bezier(.2, .9, .26, 1) forwards
         }
 
-        @keyframes bootMove {
-            0% {
-                opacity: 0;
-                transform: translateX(-10px) scale(.98)
-            }
-
-            50% {
+        @keyframes bootIn {
+            to {
                 opacity: 1;
-                transform: translateX(4px) scale(1.02)
-            }
-
-            100% {
-                transform: translateX(0) scale(1)
+                transform: translateY(0)
             }
         }
 
-        /* Cursor */
+        .client {
+            font-weight: 600;
+            color: rgba(255, 154, 40, 0.85);
+            font-size: 12px;
+            margin-left: 8px;
+            opacity: 0;
+            transform: translateY(-2px);
+            transition: opacity .28s ease, transform .28s ease
+        }
+
+        .client.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .cmd-line {
+            white-space: pre-wrap;
+            font-size: 14px
+        }
+
         .cursor {
             display: inline-block;
             width: 10px;
@@ -177,137 +93,118 @@
             }
         }
 
-        /* Texto tipo CMD */
-        .cmd-line {
-            white-space: pre-wrap
-        }
-
-        /* Pequeña estética de sombra/CRT */
-        .monitor .screen::after {
+        .terminal::before {
             content: '';
-            position: absolute;
-            pointer-events: none;
+            position: fixed;
             left: 0;
             right: 0;
             top: 0;
             bottom: 0;
-            mix-blend-mode: overlay;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 40%)
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 100% 3px;
+            mix-blend-mode: overlay
         }
 
-        /* Responsivo */
-        @media (max-width:520px) {
-            .monitor {
-                width: 320px
-            }
+        .progress-bar {
+            width: 80%;
+            height: 12px;
+            border: 1px solid var(--text);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden
+        }
 
-            .monitor .screen {
-                height: 100px;
-                font-size: 12px
+        .progress-fill {
+            background: var(--text);
+            height: 100%;
+            width: 0%;
+            transition: width 3s linear
+        }
+
+        @media (max-width:520px) {
+            .cmd-line {
+                font-size: 13px
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="shell">
-        <div class="center">
-            <div class="panel">
-                <h1 style="margin:0">SNOKER — Génesis</h1>
-                <p style="margin-top:8px;color:var(--muted)">Interfaz base: pantalla completamente negra. La terminal se
-                    muestra arriba a la izquierda.</p>
-            </div>
+    <div class="terminal" id="terminal" role="region" aria-label="Terminal Valkyria" aria-live="polite">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+            <div id="bootLine" class="bootline">Iniciando Valkyria</div>
+            <div id="bootClient" class="client">Valkyria Client</div>
+            <div id="bootDots" style="margin-left:6px;min-width:22px">...</div>
+            <span id="bootCursor" class="cursor" aria-hidden="true"></span>
         </div>
+        <div id="cmdArea"></div>
     </div>
-
-    <!-- TERMINAL RETRO: aparece tras 500ms y luego escribe comandos al estilo CMD -->
-    <div class="retro-terminal-wrap" aria-hidden="false">
-        <div class="monitor" id="retroMonitor" role="region" aria-label="Terminal Valkyria" aria-live="polite">
-            <div class="titlebar">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
-                <div style="flex:1"></div>
-                <div style="font-family:ui-sans-serif;font-size:11px;color:var(--muted)">Valkyria Shell</div>
-            </div>
-            <div class="screen" id="retroScreen">
-                <div id="bootLine" class="bootline">Iniciando protocolo Valkyria ...</div><span id="bootCursor"
-                    class="cursor"></span>
-                <div id="cmdArea" style="margin-top:10px"></div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // Mostrar monitor tras 500ms con movimiento
-        const monitor = document.getElementById('retroMonitor');
+        const terminal = document.getElementById('terminal');
         const bootLine = document.getElementById('bootLine');
+        const bootClient = document.getElementById('bootClient');
+        const bootDots = document.getElementById('bootDots');
         const bootCursor = document.getElementById('bootCursor');
         const cmdArea = document.getElementById('cmdArea');
-
         function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-        async function startBootSequence() {
+        const commands = [
+            'C:\\> Actualizando paquetes... (apt/valkyri update)',
+            'C:\\> Verificando módulos cargados...',
+            'C:\\> Escaneando puertos y servicios...',
+            'C:\\> Inyectando payload ...',
+            'C:\\> Analizando integridad de datos ...',
+            'C:\\> Desencriptando hashes antiguos ...',
+            'C:\\> Reconfigurando matrices ...',
+            'C:\\> Sincronizando memoria histórica (Valkyria)...',
+            'C:\\> Exportando reporte local y registros...'
+        ];
+        async function startSequence() {
             await sleep(500);
-            monitor.classList.add('visible');
-
-            // efecto de escritura simple para la línea de boot
-            const text = 'Iniciando protocolo Valkyria ...';
+            const heading = 'Iniciando Valkyria';
             bootLine.textContent = '';
-            for (let i = 0; i < text.length; i++) {
-                bootLine.textContent += text[i];
-                await sleep(28 + Math.random() * 40);
+            for (let i = 0; i < heading.length; i++) { bootLine.textContent += heading[i]; await sleep(20 + Math.random() * 30); }
+            bootClient.classList.add('show');
+            const dotUp = '˙';
+            const frames = ['...', dotUp + '..', '.' + dotUp + '.', '..' + dotUp];
+            const dotDuration = 2000;
+            const step = Math.max(120, Math.floor(dotDuration / frames.length));
+            for (let repeat = 0; repeat < 2; repeat++) {
+                for (let f = 0; f < frames.length; f++) {
+                    bootDots.textContent = frames[f];
+                    await sleep(step);
+                }
             }
-
-            // pequeña pausa y luego animación de movimiento
-            await sleep(220);
-            bootLine.classList.add('move');
-
-            // comienza a imprimir líneas tipo CMD
-            await sleep(360);
+            bootDots.textContent = '...';
+            await sleep(120);
             bootCursor.style.display = 'none';
-
-            // comandos a mostrar (personaliza aquí)
-            const commands = [
-                'C:\> scan genesis --mode legacy',
-                'C:\> connect 2b2t -proto handshake_v1',
-                'C:\> fetch relics --filter valkyria',
-                'C:\> integrity_check --source:memcache',
-                'C:\> decrypt fragment_04.bin',
-                'C:\> restore --partial --focus:stealth',
-                'C:\> set power +15',
-                'C:\> export log --to:local',
-                'C:\> exit'
-            ];
-
             for (const line of commands) {
                 await typeCMDLine(line);
-                await sleep(260 + Math.random() * 200);
+                await sleep(220 + Math.random() * 180);
             }
-
-            // cursor final
-            const final = document.createElement('div'); final.className = 'cmd-line'; final.innerHTML = 'C:\> ';
-            const cur = document.createElement('span'); cur.className = 'cursor'; final.appendChild(cur);
-            cmdArea.appendChild(final);
-            cmdArea.scrollTop = cmdArea.scrollHeight;
+            showProgressBar();
         }
-
         async function typeCMDLine(fullText) {
-            const el = document.createElement('div'); el.className = 'cmd-line';
-            cmdArea.appendChild(el);
+            const el = document.createElement('div'); el.className = 'cmd-line'; cmdArea.appendChild(el);
             for (let i = 0; i < fullText.length; i++) {
                 el.textContent = fullText.slice(0, i + 1);
-                cmdArea.scrollTop = cmdArea.scrollHeight;
-                await sleep(20 + Math.random() * 50);
+                terminal.scrollTop = terminal.scrollHeight;
+                await sleep(12 + Math.random() * 35);
             }
         }
-
-        // Iniciar secuencia
-        startBootSequence();
-
-        // Exponer helper para desarrollo
-        window.__snokerBoot = { startBootSequence };
-
+        function showProgressBar() {
+            const barContainer = document.createElement('div');
+            barContainer.className = 'progress-bar';
+            const fill = document.createElement('div');
+            fill.className = 'progress-fill';
+            barContainer.appendChild(fill);
+            cmdArea.appendChild(barContainer);
+            terminal.scrollTop = terminal.scrollHeight;
+            setTimeout(() => { fill.style.width = '100%'; }, 100);
+            setTimeout(() => { window.location.href = 'snokerinfo.html'; }, 3100);
+        }
+        startSequence();
+        window.__snoker = { startSequence };
     </script>
 </body>
 
