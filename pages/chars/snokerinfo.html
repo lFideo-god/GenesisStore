@@ -175,6 +175,11 @@
     <script src="../../js/char-stats.js"></script>
 
     <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             const toggle = document.getElementById("valkyriaToggle");
             const bars = document.querySelectorAll(".stat-bar-fill");
@@ -231,6 +236,8 @@
             });
         });
     </script>
+
+
 </body>
 
 </html>
