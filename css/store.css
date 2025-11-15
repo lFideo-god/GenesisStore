@@ -104,25 +104,33 @@
     font-size: 0.9em;
     margin: 0 0 15px 0;
     min-height: 40px;
+    position:inherit;
+}
+
+
+
+.item-card {
+    position: relative;
 }
 
 .item-tooltip {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.9);
     border: 2px solid #555555;
     border-radius: 5px;
     padding: 15px;
     width: 200px;
-    margin-bottom: 10px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 100;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    z-index: 10;
     pointer-events: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    /* POSICIÓN POR DEFECTO */
+    left: 105%;   /* a la derecha del item */
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .item-card:hover .item-tooltip {
@@ -136,6 +144,7 @@
     font-size: 1.1em;
     text-align: center;
 }
+
 
 .enchantment {
     color: #55ff55;
